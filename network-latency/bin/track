@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "network/latency"
+require 'pry'
+
+Network::Latency::Ping.setup
+domains = ARGV
+if domains.empty?
+  domains = %w(google instagram facebook twitter linkedin).map{|d|"#{d}.com"}
+end
+domains.map do |domain|
+  Thread.new(domain) do |domain|
+    Network::Latency.track(domain)
+  end
+end.each(&:join)
+

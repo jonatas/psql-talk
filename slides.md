@@ -1,4 +1,3 @@
-
 # Zen Life
 
 Autor: Jônatas Davi Paganini
@@ -24,11 +23,20 @@ Autor: Jônatas Davi Paganini
 
 # Agenda
 
-* why
-* bash intro
-* psql
-* readline
+* Zen meaning
+* Why
+* Bash intro
+* Psql
+* Readline
 * CLI tools
+
+# Zen
+
+    Tipo de meditação contemplativa que visa a levar
+    o praticante à "experiência direta da realidade"
+    através da observação da própria mente.
+
+[Wikipedia](https://pt.wikipedia.org/wiki/Zen).
 
 # Why
 
