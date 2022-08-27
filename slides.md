@@ -23,8 +23,8 @@ Autor: Jônatas Davi Paganini
 
 # Agenda
 
-* Zen meaning
-* Why
+* Zen?
+* Terminal?
 * Bash intro
 * Psql
 * Readline
@@ -38,15 +38,15 @@ Autor: Jônatas Davi Paganini
 
 [Wikipedia](https://pt.wikipedia.org/wiki/Zen).
 
-# Why
+# Terminal?
 
-* Sexta linguagem mais usada no mundo
+* Bash/shell script é a sexta linguagem mais usada no mundo
 * Building blocks - lego dos programadores
 * Extensível
 * Flexível
 * Independente da interface gráfica
 
-# bash
+# Bash
 
 ```
 <comando> <*opções> <*argumentos>
@@ -192,14 +192,15 @@ cat hello_pt_br.txt | grep mundo
 
 Comandos utilitários para arquivos:
 
-* `cat` lê todo conteúdo do arquivo na linha de comando
-* `head` lê apenas primeiras linhas do arquivo
-* `tail` lê apenas últimas linhas do arquivo
-* `more` lê arquivo com pager
-* `wc` conta linhas
-* `cd` vai para um diretório
-* `ls` lista conteúdo de um diretório
-* `pwd` mostra diretório atual
+* `cat` lê todo conteúdo do arquivo na linha de comando.
+* `head` lê apenas primeiras linhas do arquivo.
+* `tail` lê apenas últimas linhas do arquivo.
+* `more` lê arquivo com pager.
+* `wc` conta linhas.
+* `cd` vai para um diretório.
+* `ls` lista conteúdo de um diretório.
+* `pwd` mostra diretório atual.
+* `grep` filtra text com expressões regulares.
 
 # readline
 
@@ -553,6 +554,7 @@ Executa sql a partir da última query:
 * `brew` para mac, `chocolate` para windows.
 * `tmux` para usar um terminal multi janela mais avançado.
 * `screen` para fazer pair programming na cloud.
+* `gh` CLI do github.
 
 # Links
 
