@@ -1,6 +1,8 @@
-# Zen Life
+# Psql
 
-Autor: Jônatas Davi Paganini
+Practical psql: fast navigation on your DB using only terminal.
+
+Author: Jônatas Davi Paganini
 
 #### @jonatasdp
 
@@ -9,50 +11,40 @@ Autor: Jônatas Davi Paganini
 * Backend developer
 * Ruby/Shell/Postgresql/Vim
 
-    Programador desde 2004.
+    Dev since 2004. Using Ruby since 2007.
 
 #### twitter: @jonatasdp
 #### github: @jonatas
 
 # Audience
 
-* Quem aqui já trabalhou em computador sem interface gráfica?
-* Sem mouse?
-* Com monitor preto e branco?
-* Cartão perfurado?
+* Who here worked only on terminal? No GUI?
+* No mouse?
+* B&W display?
 
 # Agenda
 
-* Zen?
 * Terminal?
 * Bash intro
 * Psql
 * Readline
 * CLI tools
 
-# Zen
-
-    Tipo de meditação contemplativa que visa a levar
-    o praticante à "experiência direta da realidade"
-    através da observação da própria mente.
-
-[Wikipedia](https://pt.wikipedia.org/wiki/Zen).
-
 # Terminal?
 
-* Bash/shell script é a sexta linguagem mais usada no mundo
-* Building blocks - lego dos programadores
-* Extensível
-* Flexível
-* Independente da interface gráfica
+* Bash/shell script is the 6th position as most used language in the world.
+* Building blocks - lego bricks for developers.
+* Extensible
+* Flexible
+* GUI Independent
 
 # Bash
 
 ```
-<comando> <*opções> <*argumentos>
+<command> <*options> <*arguments>
 ```
 
-Bem vindo ao `REPL`.
+Welcome to the `REPL`.
 
 * `R`ead
 * `E`val
@@ -62,38 +54,38 @@ Bem vindo ao `REPL`.
 # Intro
 
 ```
-echo olá mundo
+echo hello Scale20x
 ```
 
-* `echo` é o comando
-* `olá mundo` são os argumentos
+* `echo` is the command
+* `hello Scale20x` are the arguments
 
-# Comandos
+# Commands
 
-* `whoami` quem sou eu?
-* `hostname` onde estou?
-* `whatis <comando>` o que é `<comando>`?
-* `man <comando>` como usar `comando`?
-* `grep <expressão-regular>`
+* `whoami` - literally who am I?
+* `hostname` - where am I?
+* `whatis <command>` - what is `<command>`?
+* `man <command>` user manual for the `command`?
+* `grep <regular-expression>`
 
-# Argumentos
+# Arguments
 
-Argumentos são todas as palavras depois do comando
+Arguments are all the words after the command name.
 ```
 whatis whoami
-   |      ↪ argumento
-   +-> comando
+   |      ↪ argument
+   +-> command
 ```
 
 # Alias
 
-Geralmente argumentos longos começam com `--`
+Long arguments start with `--`
 
 ```
 psql --dbname <dbname>
 ```
 
-e curtos com `-`
+but an short equivalent can be used with `-`
 
 ```
 psql -d <dbname>
@@ -101,22 +93,22 @@ psql -d <dbname>
 
 # Options
 
-Opções são argumentos especiais que iniciam com `-` ou `--`.
+Special arguments prefixed with `-` or `--`.
 
 ```
-echo -e "olá\nmundo"
+echo -e "hello\nworld"
 ```
 
-* `-e` quebra linhas quando encontra um `\n`.
+* `-e` break lines when found the `\n`.
 
-# Combinando
+# Combining
 
-Opções podem ser combinadas:
+Options can be combined:
 
 ```
 ls -lah
 ```
-é o mesmo que:
+Same as:
 
 ```
 ls -l -a -h
@@ -124,11 +116,11 @@ ls -l -a -h
 
 # Sub-shell
 
-* `$()` permite uma sub-shell
+* `$()` allow to execute a sub-shell
 
 ```
-echo $(whoami) você está no seu $(hostname)
-jonatasdp você está no seu MacBook-Pro
+echo $(whoami) you are at $(hostname)
+jonatasdp you're at MacBook-Pro
 ```
 
 # Vars
@@ -137,36 +129,36 @@ jonatasdp você está no seu MacBook-Pro
 A=1; B=2; echo A + B = $(expr $A + $B)
 ```
 
-* `;` delimitador de linhas
-* `echo` é o comando
-* `expr` comando para computar expressões
+* `;` command delimiter
+* `echo` is the command
+* `expr` command to compute math expressions
 
 # Operadores
 
-* `>` envia saída para um novo arquivo.
-* `>>` envia saída para o final de um arquivo.
-* `|` concatena saída para outro comando.
+* `>` send output to a new file or device.
+* `>>` concatenate output in the end of a file.
+* `|` concatena the output to another command.
 
-# Redireciona
+# Redirect
 
-O `>` redireciona saída para um arquivo.
+The `>` redirects the output to a file
 
 ```
-echo olá mundo > hello_pt_br.txt
+echo hello > scale20.txt
 ```
 
-    Gostou do `>` aproveite para ver o `<` também ;)
+    Also check the `<` operator.
 
 
 # Append `>>`
 
-Concatena no mesmo arquivo.
+Concatenate to the same file.
 
 ```
-echo bem vindo >> hello_pt_br.txt
+echo welcome >> scale20x.txt
 ```
 
-Imprime arquivo na linha de comando:
+Print file to the output:
 
 ```
 cat hello_pt_br.txt
@@ -174,69 +166,68 @@ cat hello_pt_br.txt
 
 # Pipe `|`
 
-Concatena comandos:
+Concatenate commands:
 
 ```
-cat hello_pt_br.txt | grep mundo
+cat scale20x.txt | grep welcome
 ```
-    Imprime apenas as linhas do arquivo que possuem a palavra mundo.
+    Print only lines that includes "welcome"
 
 # File system
 
-* `.` refere-se ao diretório atual
-* `..` diretório acima
-* `~` refere-se ao "home" ou diretório do usuário
-* `/` divisor de diretórios
+* `.` current directory
+* `..` parent directory
+* `~` "home" ou user directory
+* `/` refers to directory limit
 
 # File system
 
-Comandos utilitários para arquivos:
+Useful file system commands:
 
-* `cat` lê todo conteúdo do arquivo na linha de comando.
-* `head` lê apenas primeiras linhas do arquivo.
-* `tail` lê apenas últimas linhas do arquivo.
-* `more` lê arquivo com pager.
-* `wc` conta linhas.
-* `cd` vai para um diretório.
-* `ls` lista conteúdo de um diretório.
-* `pwd` mostra diretório atual.
-* `grep` filtra text com expressões regulares.
+* `cat` prints file content in the terminal.
+* `head` prints the first lines of the file.
+* `tail` print last lines of the file.
+* `more` open a reader like a pager.
+* `wc` word count - count lines too.
+* `cd` change directory
+* `ls` list content.
+* `pwd` print working dir.
+* `grep` filter text with regular expression.
 
 # readline
 
-Navegando cursor:
+Cursor navigation:
 
-* `ctrl-a` - move cursor para o começo da linha
-* `ctrl-e` - move cursor para o fim da linha
-* `ctrl-b` - move cursor para trás
-* `ctrl-f` - move cursor  para frente
-* `ctrl ←` ou `esc-b` -  volta uma palavra
-* `ctrl →` ou `esc-f` ou `esc-l` - avança uma palavra
+* `ctrl-a` - move cursor to beginning of line.
+* `ctrl-e` - move cursor to the end of the line.
+* `ctrl-b` - move cursor back.
+* `ctrl-f` - move cursor forward.
+* `ctrl ←` ou `esc-b` -  back one word.
+* `ctrl →` ou `esc-f` ou `esc-l` - forward one word.
 
-Editando:
+Editing:
 
-* `ctrl-r` - Usa o histórico de forma reversa
-* `ctrl-d` - remove uma letra
-* `ctrl-w` - remove uma palavra
-* `esc-backspace` - apaga palavra
-
+* `ctrl-r` - Insert previous commands using reverse history.
+* `ctrl-d` - remove one letter.
+* `ctrl-w` - remove one word.
+* `esc-backspace` - erase word.
 
 # vars
 
-Algumas variáveis úteis:
+Global variables:
 
-* `!$` último argumento da linha anterior
-* `!!` último comando
-* `$OLDPWD` último diretorio
-* `$PATH` diretórios oficiais para buscar comandos
-* `$USER` nome do usuário
-* `$HOME` caminho para o diretório do usuário
+* `!!` previous command
+* `!$` last argument of previous command
+* `$OLDPWD` previous directory
+* `$PATH` set of directories for binaries
+* `$USER` logged user name
+* `$HOME` home directory path
 
 # process matrix
 
-* `ctrl-z` envia processo para background
-* `fg` resgata processo em background
-* `echo $0` verifica qual shell está usando
+* `ctrl-z` send a process to background
+* `fg` foreground a background process
+* `echo $0` verify what shell are you using
 
 # PSQL \o/
 
@@ -250,19 +241,21 @@ FINALLY \o/
 man psql
 ```
 
-# Conectando
+# Conecting
 
 ```
 psql -U<user> -h<host> <dbname>
 ```
 
-Ou
+Or
 
 ```
 psql "dbname=<database name> user=<username> host=<hostname>"
 ```
 
 ## pg_service.conf
+
+Wrap your connection params into `~/pg_service.conf`.
 
 ```
 cat ~/.pg_service.conf
@@ -271,7 +264,8 @@ dbname=playground
 user=jonatasdp
 host=localhost
 ```
-Então só usar o argumento service:
+
+Then, use the service argument:
 
 ```
 psql service=playground
@@ -284,7 +278,7 @@ cat .env
 export PG_URI=postgres://jonatasdp@localhost:5432/dbname
 ```
 
-Source para carregar um arquivo bash:
+Source the `.env` to load the environment variable:
 
 ```
 source .env
@@ -293,81 +287,81 @@ psql $PG_URI
 
 # Vars
 
-* `PGHOST` ao invés de `--host` ou `-h`
-* `PGUSER` ao invés de `-U` ou `--user`
-* `PGPASSWORD` para não digitar a senha
-* `PSQL_EDITOR` permite você configurar qual editor usar com `\e`
+* `PGHOST` instead of `--host` or `-h`
+* `PGUSER` instead of `-U` or `--user`
+* `PGPASSWORD` instead of type the password
+* `PSQL_EDITOR` configure your favorite editor when using `\e`
 
 # Help
 
-Ajuda pode ser obtida com:
+Learn the manual with:
 
-* `man psql` para saber mais sobre o cliente
+* `man psql`
 
-Dentro do psql:
+Inside psql:
 
-* `\?` para saber sobre todos comandos do psql
-* `\h` para aprender sobre SQL
+* `\?` help and learn about psql commands
+* `\h` help and learn the SQL syntax
 
 # tab
 
 > Tab = Autocomplete
 
-* Funciona no bash
-* Funciona para comandos
-* Limita as opções
-* Permite navegar e escolher as sugestões
+* Works on bash
+* Works with a lot of commands
+* Limit the options
+* Allow to navigate and choose from options
 
     ```
-    Pro-tip: Não tente digitar, use tab.
+    Pro-tip: Avoid typing, use tab ;)
     ```
 
-# Conectando
+# Connecting
 
-* `\l` Lista os bancos disponíveis em um servidor
-* `\c` conecta em um banco específico no mesmo servidor.
-* `\q` desconecta do banco e sai do psql
+* `\l` List databases.
+* `\c` Connect to a specific database.
+* `\q` Disconnect/exit from the psql.
 
 # Describe
 
-* `\d` para descrever objetos
-* `\dt` para tabelas
-* `\di` para indices
-* `\df` para funções
+* `\d` describe objects
+* `\dt` for tables
+* `\di` for indices
+* `\df` for functions
 
-    Use o `+` para mais detalhes.
+    Use the `+` as a modifier to get more details
 
 # createdb
 
-O `createdb` permite criar um banco de dados sem entrar no servidor.
+The `createdb` allows you to create a database without entering on the psql.
 
 ```
-createdb pgconfbr2022
-psql pgconfbr2022
+createdb scale20x
+psql scale20x
 ```
 
 # cursor
 
-O cursor mostra o banco que você está conectado.
+The cursor shows you what DB you're connected.
 
 ```
 playground=#
 ```
 
-* `#` significa que você é admin
-* `>` significa que você é um usuário simples
-* `=` novo comando
-* `-` comando em andamento
-* `*` em meio a uma transação
-* `'` em meio a uma string
+* `#` means you're admin
+* `>` means you're a regular user
+* `=` new command
+* `-` pending to finish a command
+* `*` pending to commit or abort a transaction
+* `'` inside a string
 
 # help command
 
-Para obter ajuda sobre o comando `create table`
+Get help about the command `create table`
 ```sql
 \h create table
 ```
-Depois use:
+After use:
 
 ```sql
 create table participants (id serial, name text);
@@ -375,7 +369,7 @@ create table participants (id serial, name text);
 
 # inserting
 
-Inserindo alguns participantes:
+Insert some data:
 
 ```sql
 INSERT INTO participants (name) VALUES ('Jônatas'),
@@ -386,7 +380,7 @@ INSERT INTO participants (name) VALUES ('Jônatas'),
 
 # selecting
 
-`TABLE` é o melhor atalho para `SELECT * FROM` ;)
+`TABLE` is a shortcut to `SELECT * FROM` ;)
 
 ```sql
 TABLE participants;
@@ -398,24 +392,25 @@ TABLE participants;
 \gdesc
 ```
 
-Descreve os tipos de dados da última query.
+Describes the data types of the last query.
 
 # timing
 
-Habilitando:
+Enabling:
 
 ```sql
 \timing on
 ```
-Desabilitando benchmarks:
+
+Disabling timing:
 
 ```sql
 \timing off
 ```
 
-# latencia
+# latency
 
-Conecte-se em um servidor remoto e teste a latência:
+Connect to a remote server to test the latency:
 
 ```sql
 \timing on
@@ -424,9 +419,9 @@ Time: 169.258 ms
 ```
 # bash
 
-Use `\!` para rodar um comando bash dentro do shell:
+Use `\!` to run a bash inside psql:
 
-Use o ip do `\conninfo` e rodar um `whois` filtrando pelo país:
+Use the ip from `\conninfo` and run a `whois` filtering by country:
 
 ```
 \! whois <ip> | grep Country
@@ -434,41 +429,42 @@ Use o ip do `\conninfo` e rodar um `whois` filtrando pelo país:
 
 # pg_dump
 
-Backup de uma tabela em um arquivo:
+Backup a table into a file:
 
 ```
-pg_dump pgconfbr --table participants  > participants.sql
+pg_dump scale20x --table participants  > participants.sql
 ```
 
 # loading data
 
-Carregando backup do arquivo:
+Loading backup data from a file:
 
 ```
-psql bkppgconf < participants.sql
+psql bkpscale20x < participants.sql
 ```
-ou
+or
 
 ```
-cat participants.sql > psql bkppgconf
+cat participants.sql > psql bkpscale20x
 ```
 
-ou
+or
 
 ```
-psql bkppgconf -f participants.sql
+psql bkpscale20x -f participants.sql
 ```
+
 # pipe
 
-Descarregando backup sem usar o disco:
+Loading backup without touching the disk:
 
 ```
-pg_dump pgconfbr --table participants | psql bkppgconf
+pg_dump scale20x --table participants | psql bkpscale20x
 ```
 
 # \pset
 
-Configurações de impressão: **Print Settings**
+**Print Settings** for psql
 
 ```
 \pset <tab><tab>
@@ -476,23 +472,38 @@ Configurações de impressão: **Print Settings**
 
 # pager
 
-Desabilitar o pager:
+Disable pager
 
 `\pset pager off`
 
-Habilitar novamente:
+Enable pager
 
 `\pset pager on`
 
+# pager
+
+Shortcuts:
+
+* Use `ctrl-a -S` to chop lines.
+* Use `shift-g` to go to the end of the output.
+* `Enter` or `j`: Move down one line
+* `Space` or `f`: Move down one page
+* `b`: Move up one page
+* `/`: Search forward for a pattern
+* `?`: Search backward for a pattern
+* `n`: Repeat the previous search in the same direction
+* `N`: Repeat the previous search in the opposite direction
+* `q`: Quit the pager and return to psql
+
 # format
 
-Muda formato para CSV:
+Change format to CSV:
 
 ```
 \pset format csv
 ```
 
-Muda formato para HTML:
+Change format to HTML:
 
 ```
 \pset format html
@@ -500,30 +511,34 @@ Muda formato para HTML:
 
 # \x
 
-Habilita expansão de colunas em linhas.
+Expand columns to rows.
 
 ```
 \x on
 ```
-Desabilita:
+
+Disable it:
 
 ```
 \x off
 ```
 
-Exemplo com `\df`.
+Exemple using `\df`.
 
 # \o
 
-Use `\o` para direcionar o output para um arquivo.
+Use `\o` to redirect the output to a file.
+
+Similar to `>>` on bash.
 
 ```
 \o arquivo.txt
 ```
+
 # \g
 
-* `\g` repete ultimo comando.
-O `\g <arquivo>` repete ultimo comando enviando resultados para arquivo.
+* `\g` repeat the last command.
+The `\g <file>` repeats the last command and redirect the output to a file.
 
 ```
 \pset format csv
@@ -533,28 +548,28 @@ table participants;
 
 # \watch
 
-Similar ao `\g` mas repete automaticamente a cada 1 segundo.
+Similar to `\g` but it repeats automatically every 2 seconds:
 
 ```sql
 TABLE pings ORDER BY t DESC LIMIT 5;
 ```
 
-Exemplo network latency.
+Run network latency example.
 
 # \gexec
 
-Executa sql a partir da última query:
+Execute sql from last query:
 
 [Exemplo](https://gist.github.com/jonatas/340294dfb66cddc9af072ee21d49dfff).
 
 # CLI extras
 
-* `fuck` explora comandos alternativos quando comando falha.
-* `tldr` mostra exemplos de uso dos comandos.
-* `brew` para mac, `chocolate` para windows.
-* `tmux` para usar um terminal multi janela mais avançado.
-* `screen` para fazer pair programming na cloud.
+* `tldr` show examples of most common terminal tools.
+* `brew` for Mac, install via command line.
+* `tmux` use for multi window.
+* `screen` useful for pairing on terminal
 * `gh` CLI do github.
+* `fuck` explore alternative command suggestions.
 
 # Links
 
@@ -562,9 +577,10 @@ Executa sql a partir da última query:
 * [Lætitia Avrot: `psql` is awesome!](https://www.youtube.com/watch?v=2oFbnJDlwIw)
 * [how to install psql](https://docs.timescale.com/timescaledb/latest/how-to-guides/connecting/psql/#install-psql-on-macos).
 
-# Obrigado
+# Thank you!
 
-- {Twitter,Instagram,Linkedin}: [@jonatasdp](https://twitter.com/jonatasdp)
+- {Twitter,Instagram,Linkedin} [@jonatasdp](https://twitter.com/jonatasdp)
 - Github: [@jonatas](https://github.com/jonatas)
+
 
 #### Jônatas Davi Paganini
